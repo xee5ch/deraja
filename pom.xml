@@ -1,0 +1,33 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>deraja</groupId>
+  <artifactId>deraja</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>deraja</name>
+  <description> Simple temperature conversion app for teachers.</description>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.7.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  <url>https://github.com/xee5ch/deraja/</url>
+  <ciManagement>
+  	<url>https://travis-ci.com/xee5ch/deraja/j</url>
+  	<system>TravisCI</system>
+  </ciManagement>
+  <issueManagement>
+  	<system>Github</system>
+  	<url>https://github.com/xee5ch/deraja/issues</url>
+  </issueManagement>
+  <scm>
+  	<developerConnection>Al S &lt;xee5ch.gh.al@il5.in.&gt;</developerConnection>
+  	<url>https://github.com/xee5ch/deraja/</url>
+  </scm>
+</project>
