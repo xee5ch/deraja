@@ -3,12 +3,9 @@ language: java
 jdk:
  - oraclejdk8
 
-before_script:
- - sudo apt-get install ant-optional
-
-install: ant init
-
-script: ant build
+cache:
+  directories:
+  - $HOME/.m2
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
