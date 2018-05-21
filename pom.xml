@@ -30,4 +30,12 @@
   	<developerConnection>Al S &lt;xee5ch.gh.al@il5.in.&gt;</developerConnection>
   	<url>https://github.com/xee5ch/deraja/</url>
   </scm>
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>5.0.0-M5</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 </project>
