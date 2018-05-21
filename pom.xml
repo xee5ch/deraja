@@ -36,34 +36,49 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<!-- Build an executable JAR -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>3.1.0</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>lib/</classpathPrefix>
+							<mainClass>io.github.xee5ch.deraja.Application</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
 		</plugins>
-  <extensions>
-    <extension>
-      <groupId>io.packagecloud.maven.wagon</groupId>
-      <artifactId>maven-packagecloud-wagon</artifactId>
-      <version>0.0.4</version>
-    </extension>
-  </extensions>
+		<extensions>
+			<extension>
+				<groupId>io.packagecloud.maven.wagon</groupId>
+				<artifactId>maven-packagecloud-wagon</artifactId>
+				<version>0.0.4</version>
+			</extension>
+		</extensions>
 	</build>
 	<url>https://github.com/xee5ch/deraja/</url>
 	<ciManagement>
-		<url>https://travis-ci.com/xee5ch/deraja/j</url>
+		<url>https://travis-ci.com/xee5ch/deraja</url>
 		<system>TravisCI</system>
 	</ciManagement>
-        <distributionManagement>
-  <repository>
-    <id>packagecloud-travis</id>
-    <url>
+	<distributionManagement>
+		<repository>
+			<id>packagecloud-travis</id>
+			<url>
       packagecloud+https://packagecloud.io/ahdo9i/deraja-sample-prod
     </url>
-  </repository>
-  <snapshotRepository>
-    <id>packagecloud-travis</id>
-    <url>
+		</repository>
+		<snapshotRepository>
+			<id>packagecloud-travis</id>
+			<url>
       packagecloud+https://packagecloud.io/ahdo9i/deraja-sample-prod
     </url>
-  </snapshotRepository>
-</distributionManagement>
+		</snapshotRepository>
+	</distributionManagement>
 	<issueManagement>
 		<system>Github</system>
 		<url>https://github.com/xee5ch/deraja/issues</url>
