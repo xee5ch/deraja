@@ -3,114 +3,98 @@ package io.github.xee5ch.deraja;
 import java.util.Scanner;
 
 public class Application {
-	
+
+	public static void checkExit(String input) {
+		if (input.equals("q") || input.equals("quit")) {
+			System.out.printf("Exiting, goodbye%n");
+			System.exit(0);
+		}
+	}
+
+	public static String getWelcomeMessage() {
+		return "Welcome to Temp Conversion Grader!\nYou may quit at any time by typing 'q' or 'quit' at a prompt.";
+
+	}
+
+	public static String getUnitsTable() {
+		return "Enter C, Celsius, F, Fahrenheit K, Kelvin, R, or Rankine as needed.";
+	}
+
 	public static void main(String[] arguments) {
-		
+
 		Temperature inputTemp = new ErrorTemperature();
 		String inputDegrees = Utilities.toScaledValue(Temperature.DEFAULT).toString();
 		String defaultDegrees = Utilities.toScaledValue(Temperature.DEFAULT).toString();
 		Class<?> targetTempType = ErrorTemperature.class;
 		String studentResponse;
-		
-		Scanner scanner = new Scanner(System.in);
-		System.out.printf("Welcome to Temp Converter Grader%n");
-		
-		System.out.printf("Please enter a temperature:%n> ");
-		String input = scanner.nextLine().toLowerCase();
-		
-		if(input == "q" || input == "quit")
-		{
-			System.out.printf("Exiting, goodbye%n");
-			System.exit(0);
-		}
-		
-		else
-		{
+
+		try (Scanner scanner = new Scanner(System.in)) {
+
+			System.out.printf("%s%n", getWelcomeMessage());
+
+			System.out.printf("Please enter a temperature:%n> ");
+			String input = scanner.nextLine().toLowerCase();
+
+			checkExit(input);
+
 			inputDegrees = input;
-		}
-		
-		System.out.printf("Please enter temperature unit:%nEnter C/Celsius F/Fahrenheit K/Kelvin/ or R/Rankine%n> ");
-		input = scanner.nextLine().toLowerCase();
-		if(input == "q" || input == "quit")
-		{
-			System.out.printf("Exiting, goodbye%n");
-			scanner.close();
-			System.exit(0);
-		}
-		
-		else
-		{
-			switch(input)
-			{
+
+			System.out.printf("Please enter temperature unit:%n%s%n> ", getUnitsTable());
+			input = scanner.nextLine().toLowerCase();
+			checkExit(input);
+
+			switch (input) {
 			case "c":
 			case "celsius":
-				try
-				{
-					inputTemp = new Celsius(inputDegrees);	
+				try {
+					inputTemp = new Celsius(inputDegrees);
 				}
-				
-				catch(Exception ex)
-				{
+
+				catch (Exception ex) {
 					inputTemp = new ErrorTemperature(defaultDegrees);
 				}
-				
+
 				break;
 			case "f":
 			case "fahrenheit":
-				try
-				{
+				try {
 					inputTemp = new Fahrenheit(inputDegrees);
-				}
-				catch(Exception ex)
-				{
+				} catch (Exception ex) {
 					inputTemp = new ErrorTemperature(defaultDegrees);
 				}
-				
+
 				break;
 			case "k":
 			case "kelvin":
-				try
-				{
+				try {
 					inputTemp = new Kelvin(inputDegrees);
 				}
-				
-				catch(Exception ex)
-				{
+
+				catch (Exception ex) {
 					inputTemp = new ErrorTemperature(defaultDegrees);
 				}
-				
+
 				break;
 			case "r":
 			case "rankine":
-				try
-				{
+				try {
 					inputTemp = new Rankine(inputDegrees);
 				}
-				
-				catch(Exception ex)
-				{
+
+				catch (Exception ex) {
 					inputTemp = new ErrorTemperature(defaultDegrees);
 				}
-				
+
 				break;
 			default:
 				inputTemp = new ErrorTemperature(defaultDegrees);
 			}
-		}
-		
-		System.out.printf("Please enter target unit for student answer:%nEnter C/Celsius F/Fahrenheit K/Kelvin/ or R/Rankine%n> ");
-		input = scanner.nextLine().toLowerCase();
-		if(input == "q" || input == "quit")
-		{
-			System.out.printf("Exiting, goodbye%n");
-			scanner.close();
-			System.exit(0);
-		}
-		
-		else
-		{
-			switch(input)
-			{
+
+			System.out.printf("Please enter target unit for student answer:%n%s%n> ", getUnitsTable());
+			input = scanner.nextLine().toLowerCase();
+			checkExit(input);
+
+			switch (input) {
 			case "c":
 			case "celsius":
 				targetTempType = Celsius.class;
@@ -130,16 +114,16 @@ public class Application {
 			default:
 				targetTempType = ErrorTemperature.class;
 			}
+
+			System.out.printf("Please enter student's answer:%n> ");
+			input = scanner.nextLine();
+			checkExit(input);
+
+			studentResponse = input;
+
+			HomeworkAnswer h = new HomeworkAnswer(inputTemp, targetTempType, studentResponse);
+			System.out.printf("%s%n", h.getAnswerState());
 		}
-		
-		System.out.printf("Please enter student's answer:%n> ");
-		input = scanner.nextLine();
-		studentResponse = input;
-		
-		HomeworkAnswer h = new HomeworkAnswer(inputTemp, targetTempType, studentResponse);
-		System.out.printf("%s%n", h.getAnswerState());
-		
-		scanner.close();
 		System.exit(0);
 	}
 }
