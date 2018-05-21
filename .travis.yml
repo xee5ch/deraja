@@ -3,9 +3,19 @@ language: java
 jdk:
  - oraclejdk8
 
+services:
+- docker
+
 cache:
   directories:
   - $HOME/.m2
+
+deploy:
+  provider: script
+  script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn deploy"
+  skip_cleanup: true
+  on:
+    tags: true
 
 after_success:
  - bash <(curl -s https://codecov.io/bash)
