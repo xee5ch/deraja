@@ -60,7 +60,7 @@
   <snapshotRepository>
     <id>packagecloud-travis</id>
     <url>
-      packagecloud+https://packagecloud.io/capotej/java-test-package
+      packagecloud+https://packagecloud.io/ahdo9i/deraja-sample-prod
     </url>
   </snapshotRepository>
 </distributionManagement>
